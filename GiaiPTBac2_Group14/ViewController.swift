@@ -76,54 +76,63 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
-            let a:Double = (Double)(txtA.text!)!
-            let b:Double = (Double)(txtB.text!)!
-            let c:Double = (Double)(txtC.text!)!
-            
-            var D:Double
-            var x1:Double
-            var x2:Double
-            if(a==0)
+            if (txtA.text! == "-" || txtB.text! == "-" || txtC.text! == "-")
             {
-                if(b==0)
-                {
-                    if(c==0)
-                    {
-                        lblKQ.text = "Phương trình có vô số nghiệm!"
-                    }
-                    else
-                    {
-                        lblKQ.text = "Phương trình vô nghiệm!"
-                    }
-                }
-                else
-                {
-                    lblKQ.text = "Phương trình có nghiệm duy nhất:\n x = \(-c/b)"
-                }
+                lblKQ.text = "Dữ liệu sai, vui lòng nhập lại!"
             }
             else
             {
-                D = b*b - 4*a*c
-                if (D < 0)
+                let a:Double = (Double)(txtA.text!)!
+                let b:Double = (Double)(txtB.text!)!
+                let c:Double = (Double)(txtC.text!)!
+                
+                var D:Double
+                var x1:Double
+                var x2:Double
+                if(a==0)
                 {
-                    lblKQ.text = "Phương trình vô nghiệm!"
-                }
-                else
-                {
-                    if (D == 0)
+                    if(b==0)
                     {
-                        lblKQ.text = "Phương trình có nghiệm kép:\nx1 = x2 = \(-b/(2*a))"
+                        if(c==0)
+                        {
+                            lblKQ.text = "Phương trình có vô số nghiệm!"
+                        }
+                        else
+                        {
+                            lblKQ.text = "Phương trình vô nghiệm!"
+                        }
                     }
                     else
                     {
-                        x1 = (-b + sqrt(D))/(2*a)
-                        x2 = (-b - sqrt(D))/(2*a)
-                        lblKQ.text = "Phương trình có hai nghiệm phân biệt:\n x1 = \(x1)\n x2 = \(x2)"
+                        lblKQ.text = "Phương trình có nghiệm duy nhất:\n x = \(-c/b)"
                     }
                 }
+                else
+                {
+                    D = b*b - 4*a*c
+                    if (D < 0)
+                    {
+                        lblKQ.text = "Phương trình vô nghiệm!"
+                    }
+                    else
+                    {
+                        if (D == 0)
+                        {
+                            lblKQ.text = "Phương trình có nghiệm kép:\nx1 = x2 = \(-b/(2*a))"
+                        }
+                        else
+                        {
+                            x1 = (-b + sqrt(D))/(2*a)
+                            x2 = (-b - sqrt(D))/(2*a)
+                            lblKQ.text = "Phương trình có hai nghiệm phân biệt:\n x1 = \(x1)\n x2 = \(x2)"
+                        }
+                    }
+                }
+                
             }
 
         }
+            
     }
 
     override func didReceiveMemoryWarning() {
